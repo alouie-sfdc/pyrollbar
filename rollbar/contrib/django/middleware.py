@@ -17,9 +17,15 @@ import sys
 import rollbar
 
 from django.core.exceptions import MiddlewareNotUsed
-from django.core.urlresolvers import resolve
 from django.conf import settings
 from django.http import Http404
+
+# Django 2.0 compatibility
+try:
+    from django.urls import resolve
+except ImportError:
+    from django.core.urlresolvers import resolve
+
 
 log = logging.getLogger(__name__)
 
